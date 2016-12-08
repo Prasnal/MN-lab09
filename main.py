@@ -22,7 +22,6 @@ def fa(j,x,func):
     a=0
     for i in range(2*L-1):     
         a+=1/L*(func(x[i])*m.cos(j*x[i]))
-        #print(a,'   ',func(x[i]))
     return a
 
 def fb(j,x,func):
@@ -51,6 +50,8 @@ plik2 = open("zad2.dat", 'w')
 plik3 = open("zad3.dat", 'w')
 plik4 = open("zad4.dat", 'w')
 
+plik_wyniki = open("5.dat", 'w')
+plik_wyniki_2 = open("30.dat", 'w')
 
 step=2*m.pi/100
 x=[]
@@ -89,12 +90,26 @@ while xst<2*m.pi:
     plik3.write(str(xst)+' '+str(result3[j])+' '+str(result4[j])+' '+str(result5[j])+' '+str(f3(xst))+"\n")
     plik4.write(str(xst)+' '+str(f1_al(xst))+' '+str(result6[j])+' '+str(result7[j])+"\n")
 
-
-
-        
-
+    
     xst=xst+step
     j=j+1
+    
+Mc=5
+fa_list=[]
+fb_list=[]
+for j in range(1,Mc):
+    fa_list.append(fa(j,x,f1_al))
+    fb_list.append(fb(j,x,f1_al))
+    plik_wyniki.write('a= '+str(fa_list[j-1])+' b= '+str(fb_list[j-1])+'\n')
+
+Mc=30
+fa1=[]
+fb1=[]
+for j in range(1,Mc):
+    fa1.append(fa(j,x,f1_al))
+    fb1.append(fb(j,x,f1_al))
+    plik_wyniki_2.write('a= '+str(fa1[j-1])+' b= '+str(fb1[j-1])+'\n')
+    
     
 plik.close()
 #print(len(x))

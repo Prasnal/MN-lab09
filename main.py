@@ -2,8 +2,8 @@ from __future__ import division
 import math as m
 
 def f1(x):
-    alfa=0
-    return 2*m.sin(x)+m.sin(2*x)+2*m.sin(3*x)+alfa
+    alpha=0
+    return 2*m.sin(x)+m.sin(2*x)+2*m.sin(3*x)+alpha
 
 def f2(x):
     return 2*m.sin(x)+m.sin(2*x)+2*m.cos(x)+m.cos(2*x)
@@ -12,10 +12,8 @@ def f3(x):
     return 2*m.sin(1.1*x)+m.sin(2.1*x)+2*m.sin(3.1*x)
 
 def f1_al(x):
-    alfa=0.1
-    return 2*m.sin(x)+m.sin(2*x)+2*m.sin(3*x)+alfa
-
-
+    alpha=0.1
+    return 2*m.sin(x)+m.sin(2*x)+2*m.sin(3*x)+alpha
 
 def fa(j,x,func):
     L=50
@@ -44,32 +42,20 @@ def F(x,xst,Mc,Ms,func):
     #return wynik
 
 
-#zad 1
-plik = open("zad1.dat", 'w')
-plik2 = open("zad2.dat", 'w')
-plik3 = open("zad3.dat", 'w')
-plik4 = open("zad4.dat", 'w')
+file1 = open("zad1.dat", 'w')
+file2 = open("zad2.dat", 'w')
+file3 = open("zad3.dat", 'w')
+file4 = open("zad4.dat", 'w')
 
-plik_wyniki = open("5.dat", 'w')
-plik_wyniki_2 = open("30.dat", 'w')
+file_result = open("5.dat", 'w')
+file_result_2 = open("30.dat", 'w')
 
 step=2*m.pi/100
 x=[]
 xst=0
-Ms=5
-Mc=5
-result=[]
-result2=[]
+Ms,Mc=5,5
+result,result2,result3,result4,result5,result6,result7=[],[],[],[],[],[],[]
 
-result3=[]
-result4=[]
-result5=[]
-
-result6=[]
-result7=[]
-
-
-#wspolczynniki:
 i=0
 while i<2*m.pi:
     x.append(i)
@@ -85,31 +71,29 @@ while xst<2*m.pi:
     result6.append(F(x,xst,5,5,f1_al))
     result7.append(F(x,xst,30,30,f1_al))
 
-    plik.write(str(xst)+' '+str(result[j])+' '+str(f1(xst))+"\n")
-    plik2.write(str(xst)+' '+str(result2[j])+' '+str(f2(xst))+"\n")
-    plik3.write(str(xst)+' '+str(result3[j])+' '+str(result4[j])+' '+str(result5[j])+' '+str(f3(xst))+"\n")
-    plik4.write(str(xst)+' '+str(f1_al(xst))+' '+str(result6[j])+' '+str(result7[j])+"\n")
+    file1.write(str(xst)+' '+str(result[j])+' '+str(f1(xst))+"\n")
+    file2.write(str(xst)+' '+str(result2[j])+' '+str(f2(xst))+"\n")
+    file3.write(str(xst)+' '+str(result3[j])+' '+str(result4[j])+' '+str(result5[j])+' '+str(f3(xst))+"\n")
+    file4.write(str(xst)+' '+str(f1_al(xst))+' '+str(result6[j])+' '+str(result7[j])+"\n")
 
     
     xst=xst+step
     j=j+1
     
 Mc=5
-fa_list=[]
-fb_list=[]
+fa_list,fb_list=[],[]
+
 for j in range(1,Mc):
     fa_list.append(fa(j,x,f1_al))
     fb_list.append(fb(j,x,f1_al))
-    plik_wyniki.write('a= '+str(fa_list[j-1])+' b= '+str(fb_list[j-1])+'\n')
+    file_result.write('a= '+str(fa_list[j-1])+' b= '+str(fb_list[j-1])+'\n')
 
 Mc=30
-fa1=[]
-fb1=[]
+fa1,fb1=[],[]
+
 for j in range(1,Mc):
     fa1.append(fa(j,x,f1_al))
     fb1.append(fb(j,x,f1_al))
-    plik_wyniki_2.write('a= '+str(fa1[j-1])+' b= '+str(fb1[j-1])+'\n')
-    
-    
-plik.close()
-#print(len(x))
+    file_result_2.write('a= '+str(fa1[j-1])+' b= '+str(fb1[j-1])+'\n')  
+
+
